@@ -133,3 +133,33 @@ const RightSection = () => {
           margin: "16px 0"
         }}
       ></div>
+       {/* Contacts component would go here */}
+      
+       <style jsx>{`
+        .menu-button:hover {
+          background: #f0f2f5;
+        }
+        
+        .action-item:hover {
+          background: #f0f2f5;
+          cursor: pointer;
+        }
+        
+        div::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        div::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background: #cfd8dc;
+        }
+        
+        div::-webkit-scrollbar-thumb:hover {
+          background: #b0bec5;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default RightSection;
