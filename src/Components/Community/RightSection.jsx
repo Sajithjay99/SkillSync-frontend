@@ -17,8 +17,8 @@ const RightSection = () => {
         borderLeft: "1px solid #e0e0e0",
         boxShadow: "-2px 0 10px rgba(0,0,0,0.03)"
       }}
-    ></div>
-    <div>
+    >
+      <div>
         <div 
           style={{
             display: "flex",
@@ -56,6 +56,7 @@ const RightSection = () => {
             ></i>
           </div>
         </div>
+
         <div 
           style={{
             display: "flex",
@@ -101,6 +102,7 @@ const RightSection = () => {
           ></i>
           <p style={{ margin: 0 }}>20 Notifications</p>
         </div>
+
         <div 
           style={{
             display: "flex",
@@ -133,9 +135,10 @@ const RightSection = () => {
           margin: "16px 0"
         }}
       ></div>
-       {/* Contacts component would go here */}
+
+      {/* Contacts component would go here */}
       
-       <style jsx>{`
+      <style jsx>{`
         .menu-button:hover {
           background: #f0f2f5;
         }
