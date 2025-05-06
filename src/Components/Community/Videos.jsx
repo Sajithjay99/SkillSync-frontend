@@ -10,3 +10,18 @@ const Videos = () => {
   const [loading, setLoading] = useState(true);
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    loadVideos();
+  }, []);
+
+  const loadVideos = async () => {
+    try {
+      setLoading(true);
+      setError(false);
+
+      try {
+        const videos = await PostService.getVideos();
+        setVideos(videos);
+      } catch (err) {
+        console.warn("Videos endpoint not available, falling back to filtering all posts");
