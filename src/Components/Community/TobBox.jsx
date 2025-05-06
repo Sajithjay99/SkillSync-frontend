@@ -24,3 +24,17 @@ const TopBox = () => {
     if (snap.activeIndex !== 1) {
       return null;
     }
+    return (
+        <div className="topbox-container">
+          <div className="topbox-title">Stories</div>
+          <div className="stories-container">
+            <div
+              onClick={() => {   
+                state.createWorkoutStatusModalOpened = true;
+              }}
+              className="my_story_card"
+            >
+              <div className="create-icon">
+                <PlusOutlined />
+              </div>
+              <div 
