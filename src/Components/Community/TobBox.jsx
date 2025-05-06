@@ -38,3 +38,17 @@ const TopBox = () => {
                 <PlusOutlined />
               </div>
               <div 
+               <div className="create-text">Create Story</div>
+               </div>
+       
+               {snap.storyCards &&
+                 snap.storyCards.map((card) => (
+                   <StoryCard key={card?.id} card={card} />
+                 ))}
+             </div>
+           </div>
+         );
+       };
+       
+       export default TopBox;
+       
