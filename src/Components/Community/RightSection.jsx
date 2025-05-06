@@ -101,3 +101,35 @@ const RightSection = () => {
           ></i>
           <p style={{ margin: 0 }}>20 Notifications</p>
         </div>
+        <div 
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "10px 8px",
+            borderRadius: "8px",
+            marginBottom: "8px",
+            transition: "background 0.2s ease"
+          }}
+          className="action-item"
+        >
+          <i 
+            className="fa-solid fa-bullhorn"
+            style={{
+              color: "#64B5F6",
+              fontSize: "18px",
+              marginRight: "12px",
+              width: "18px"
+            }}
+          ></i>
+          <p style={{ margin: 0 }}>Create promotion</p>
+        </div>
+      </div>
+
+      <div 
+        style={{
+          width: "100%",
+          height: "1px",
+          background: "#e0e0e0",
+          margin: "16px 0"
+        }}
+      ></div>
