@@ -23,3 +23,28 @@ const LeftMenu = () => {
     "Gallery",
     "Videos"
   ];
+  return (
+    <div className="left-menu">
+      <div className="left-menu-header">
+      <img src="../assets/icon.png" alt="" />
+        <h3 className="left-menu-title">DevConnect</h3>
+      </div>
+      
+      {/* Main navigation */}
+      <ul className="left-menu-list">
+        {mainNavItems.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => handleClick(index + 1)}
+            className={`left-menu-item ${snap.activeIndex === index + 1 ? "active" : ""}`}
+          >
+            <a href="#" className="left-menu-link">
+              {item}
+            </a>
+            {snap.activeIndex === index + 1 && (
+              <div className="left-menu-active-indicator" />
+            )}
+          </li>
+        ))}
+      </ul>
+      
