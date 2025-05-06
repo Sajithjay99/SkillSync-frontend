@@ -63,3 +63,31 @@ const Videos = () => {
       </div>
     );
   }
+  
+  return (
+    <div className="videos-container">
+      <h2 className="videos-title">Videos</h2>
+
+      {videos.length === 0 ? (
+        <Empty description="No videos have been shared yet" />
+      ) : (
+        <div className="videos-grid">
+          {videos.map((video, index) => (
+            <div key={video.id || index} className="video-item">
+              <div className="video-player-container">
+                <video
+                  src={video.mediaLink}
+                  controls
+                  className="video-player"
+                  poster={video.thumbnailUrl}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Videos;
