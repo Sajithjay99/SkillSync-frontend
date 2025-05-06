@@ -17,3 +17,10 @@ const TopBox = () => {
           console.error("Error fetching workout stories:", error);
         }
       };
+      fetchStories();
+    }, []);
+  
+    // Only render TopBox when activeIndex is 1 (Posts section)
+    if (snap.activeIndex !== 1) {
+      return null;
+    }
