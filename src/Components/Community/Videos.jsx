@@ -25,3 +25,41 @@ const Videos = () => {
         setVideos(videos);
       } catch (err) {
         console.warn("Videos endpoint not available, falling back to filtering all posts");
+        const allPosts = await PostService.getPosts();
+        const videoPosts = allPosts.filter(post => 
+          post.mediaType === "video" && post.mediaLink
+        );
+        setVideos(videoPosts);
+      }
+    } catch (error) {
+      console.error("Failed to load videos:", error);
+      message.error("Failed to load videos");
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <Empty 
+          description="Unable to load videos. Please try again later." 
+          image={Empty.PRESENTED_IMAGE_SIMPLE} 
+        />
+        <button 
+          className="retry-button"
+          onClick={loadVideos}
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
