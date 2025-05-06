@@ -56,3 +56,48 @@ const RightSection = () => {
             ></i>
           </div>
         </div>
+        <div 
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "8px 0",
+            marginBottom: "8px"
+          }}
+        >
+          <img 
+            alt="page-profile" 
+            src="image/page.jpg"
+            style={{
+              width: "36px",
+              height: "36px",
+              objectFit: "cover",
+              borderRadius: "50%",
+              marginRight: "12px",
+              border: "2px solid #64B5F6"
+            }}
+          />
+          <p style={{ margin: 0, fontWeight: "500" }}>Web Designer</p>
+        </div>
+
+        <div 
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "10px 8px",
+            borderRadius: "8px",
+            marginBottom: "8px",
+            transition: "background 0.2s ease"
+          }}
+          className="action-item"
+        >
+          <i 
+            className="fa-regular fa-bell"
+            style={{
+              color: "#64B5F6",
+              fontSize: "18px",
+              marginRight: "12px",
+              width: "18px"
+            }}
+          ></i>
+          <p style={{ margin: 0 }}>20 Notifications</p>
+        </div>
