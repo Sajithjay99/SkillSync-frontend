@@ -48,3 +48,28 @@ const LeftMenu = () => {
         ))}
       </ul>
       
+ {/* Shortcuts section */}
+ <div className="left-menu-shortcuts">
+        <h4 className="left-menu-section-title">Your Shortcuts</h4>
+        <ul className="left-menu-list">
+          {shortcutItems.map((item, index) => (
+            <li
+              key={index}
+              onClick={() => handleClick(mainNavItems.length + index + 1)}
+              className={`left-menu-item ${snap.activeIndex === mainNavItems.length + index + 1 ? "active" : ""}`}
+            >
+              <a href="#" className="left-menu-link">
+                {item}
+              </a>
+              {snap.activeIndex === mainNavItems.length + index + 1 && (
+                <div className="left-menu-active-indicator" />
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default LeftMenu;
