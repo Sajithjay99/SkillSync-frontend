@@ -98,3 +98,60 @@ class AuthService {
         console.error('[AuthService] No userId found in localStorage');
         return null;
       }
+
+      // Determine if the login was manual or OAuth (depending on whether we have a username or userId)
+      const isOAuthLogin = accessToken && userId;
+
+      if (isOAuthLogin) {
+        // If OAuth login, fetch user info using userId (from OAuth response)
+        console.log('[AuthService] OAuth login detected, fetching user info with userId');
+        const response = await axios.get(`${BASE_URL}/users/${userId}`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        return response.data;
+      } else {
+        // Manual login - get user info using the username
+        const username = localStorage.getItem('username');  // Assuming you saved the username in localStorage
+        console.log('[AuthService] Manual login detected, fetching user info with username');
+        const response = await axios.get(`${BASE_URL}/users/username/${username}`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        });
+        return response.data;
+      }
+
+    } catch (error) {
+      console.error('[AuthService] Error fetching current user:', error);
+      return null;
+    }
+  }
+
+  async refreshToken() {
+    console.log('[AuthService] Refreshing token');
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      console.log('[AuthService] Current access token:', accessToken ? 'EXISTS (not shown for security)' : 'NOT FOUND');
+      
+      const response = await axios.get(`${BASE_URL}/auth/refresh`, {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+      
+      if (response.data) {
+        console.log('[AuthService] Token refresh successful');
+        localStorage.setItem("accessToken", response.data.accessToken);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        
+        // Trigger a storage event manually
+        console.log('[AuthService] Dispatching storage event');
+        window.dispatchEvent(new Event('storage'));
+      }
+      
+      return response.data;
+    } catch (error) {
+      console.error('[AuthService] Error refreshing token:', error);
+      this.logout();
+      throw new Error("Session expired. Please login again.");
+    }
+  }
