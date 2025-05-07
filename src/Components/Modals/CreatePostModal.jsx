@@ -136,3 +136,16 @@ const CreatePostModal = () => {
             src={image}           
           />
         )}
+ {!imageUploading && (
+          <Form.Item>
+            <Button type="primary" htmlType="submit" loading={loading}>
+              Create Post
+            </Button>
+          </Form.Item>
+        )}
+      </Form>
+    </Modal>
+  );
+};
+
+export default CreatePostModal;
