@@ -1,4 +1,7 @@
+ feature/oshan/skillplan/sprint02
+
 /* left-menu.css - updated version */
+ Dev
 .left-menu {
     position: fixed;
     top: 0;
@@ -128,7 +131,11 @@
     scrollbar-color: #0073e6 #eef3f9;
   }
   
+ feature/oshan/skillplan/sprint02
+.left-menu::-webkit-scrollbar {
+
   .left-menu::-webkit-scrollbar {
+ Dev
     width: 6px;
   }
   
