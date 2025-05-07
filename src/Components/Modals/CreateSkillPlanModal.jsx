@@ -51,3 +51,71 @@ const CreateSkillPlanModal = () => {
       setLoading(false);
     }
   };
+return (
+    <Modal
+      title="Create New Skill Plan"
+      open={snap.createSkillPlanOpened}
+      footer={null}
+      onCancel={() => {
+        form.resetFields();
+        state.createSkillPlanOpened = false;
+      }}
+    >
+      <Form form={form} layout="vertical" onFinish={handleSubmit}>
+        <Form.Item
+          name="skillDetails"
+          label="Skill Details"
+          rules={[{ required: true, message: "Please enter skill details" }]}
+        >
+          <Input.TextArea placeholder="What skill do you want to develop?" />
+        </Form.Item>
+        
+        <Form.Item
+          name="skillLevel"
+          label="Skill Level"
+          rules={[{ required: true, message: "Please select skill level" }]}
+        >
+          <Select placeholder="Select skill level">
+            <Option value="beginner">Beginner</Option>
+            <Option value="intermediate">Intermediate</Option>
+            <Option value="advanced">Advanced</Option>
+          </Select>
+        </Form.Item>
+        
+        <Form.Item
+          name="resources"
+          label="Resources"
+          rules={[{ required: true, message: "Please provide resources" }]}
+        >
+          <Input.TextArea placeholder="Books, courses, websites, etc." />
+        </Form.Item>
+        
+        <Form.Item
+          name="date"
+          label="Scheduled Date"
+          rules={[{ required: true, message: "Please select a date" }]}
+        >
+          <DatePicker style={{ width: "100%" }} />
+        </Form.Item>
+        
+        <Form.Item
+          name="isFinished"
+          valuePropName="checked"
+          initialValue={false}
+          label="Is Finished?"
+        >
+          <Checkbox />
+        </Form.Item>
+        Figure
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={loading} block>
+            Create Skill Plan
+          </Button>
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+};
+
+export default CreateSkillPlanModal;
+  
