@@ -57,3 +57,50 @@ const WorkoutStory = () => {
       setLoading(false);
     }
   };
+
+  const handleDelete = async () => {
+    try {
+      setDeleteLoading(true);
+      await WorkoutStoryService.deleteWorkoutStory(
+        snap.selectedWorkoutStory.id
+      );
+      state.storyCards = await WorkoutStoryService.getAllWorkoutStories();
+      state.workoutStoryOpen = false;
+      message.success("Workout story deleted successfully");
+    } catch (error) {
+      message.error("Failed to delete story");
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
+
+  const handleCancel = () => {
+    form.resetFields(); // Reset form fields to initial values
+    setUpdatedStory({
+      title: workoutStory?.title || "",
+      image: workoutStory?.image || "",
+      description: workoutStory?.description || "",
+    });
+    state.workoutStoryOpen = false;
+  };
+
+  const handleFileChange = async (info) => {
+    if (info.file) {
+      setImageUploading(true);
+      try {
+        const uploadedImageUrl = await uploadService.uploadFile(
+          info.fileList[0].originFileObj, // The file object
+          "workoutStories" // The path in Firebase Storage
+        );
+
+        // Update state with the uploaded image URL
+        setUpdatedStory({ ...updatedStory, image: uploadedImageUrl });
+        setUploadedImage(uploadedImageUrl);
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        message.error("Failed to upload image");
+      } finally {
+        setImageUploading(false);
+      }
+    }
+  };
