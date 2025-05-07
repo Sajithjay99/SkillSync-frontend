@@ -253,3 +253,23 @@
       width: 100%;
     }
     
+    .nav__item--cta {
+      margin-top: 0.5rem;
+    }
+    
+    .nav__link--cta {
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    
+    .nav__search {
+      display: none;
+    }
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  
+  
