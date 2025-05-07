@@ -1,0 +1,33 @@
+import axios from "axios";
+import { BASE_URL } from "../constants";
+
+class PostService {
+  async createPost(postData) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.post(`${BASE_URL}/posts`, postData, config);
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to create post");
+    }
+  }
+
+  async getPosts() {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.get(`${BASE_URL}/posts`, config);
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to get posts");
+    }
+  }
