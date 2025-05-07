@@ -95,3 +95,20 @@ class PostService {
       throw new Error("Failed to get image gallery");
     }
   }
+  async getVideos() {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.get(`${BASE_URL}/posts/media/videos`, config);
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to get videos");
+    }
+  }
+}
+
+export default new PostService();
