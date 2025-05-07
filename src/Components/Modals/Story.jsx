@@ -104,3 +104,52 @@ const WorkoutStory = () => {
       }
     }
   };
+  if (!workoutStory) {
+    return null;
+  }
+
+  return (
+    <Modal
+      title={
+        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <Avatar 
+            src={author?.image} 
+            icon={<UserOutlined />} 
+            size="small"
+          />
+          <span>{workoutStory.title}</span>
+        </div>
+      }
+      open={snap.workoutStoryOpen}
+      onCancel={handleCancel}
+      footer={
+        userId === workoutStory.userId
+          ? [
+              <Button key="cancel" onClick={handleCancel}>
+                Cancel
+              </Button>,
+              <Button
+                loading={loading}
+                style={{ marginRight: 8, marginLeft: 8 }}
+                key="submit"
+                type="primary"
+                onClick={handleUpdate}
+              >
+                Update
+              </Button>,
+              <Button
+                loading={deleteLoading}
+                danger
+                key="delete"
+                type="primary"
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>,
+            ]
+          : [
+              <Button key="close" onClick={handleCancel}>
+                Close
+              </Button>
+            ]
+      }
