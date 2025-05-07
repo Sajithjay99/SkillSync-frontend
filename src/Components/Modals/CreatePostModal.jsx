@@ -73,3 +73,66 @@ const CreatePostModal = () => {
       setImageUploading(false);
     }
   };
+  return (
+    <Modal
+      visible={state.createPostModalOpened}
+      onCancel={() => {
+        form.resetFields();
+        setImage("");
+        setFileType("image");
+        state.createPostModalOpened = false;
+      }}
+      footer={null}
+    >
+      <Form form={form} layout="vertical" onFinish={handleSubmit}>
+        <Form.Item
+          name="contentDescription"
+          label="Content Description"
+          rules={[
+            { required: true, message: "Please enter content description" },
+          ]}
+        >
+          <Input.TextArea />
+        </Form.Item>
+
+        {imageUploading && <p>Media is uploading, please wait...</p>}
+
+        {!imageUploading && (
+          <Form.Item
+            name="mediaLink"
+            label="Media Link"
+            rules={[{ required: true, message: "Please enter media link" }]}
+          >
+            <Upload
+              accept="image/*,video/*"
+              onChange={handleFileChange}
+              showUploadList={false}
+              beforeUpload={() => false}
+              style={{ marginBottom: "1rem" }}
+            >
+              <Button icon={<UploadOutlined />}>Upload Media</Button>
+            </Upload>
+          </Form.Item>
+        )}
+
+        {fileType === "image" && image && (
+          <img
+            src={image}
+            alt="preview"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "400px",
+              width: "100%",
+              height: "auto",
+              objectFit: "contain",
+              marginBottom: "1rem",
+            }}
+          />
+        )}
+
+        {fileType === "video" && image && (
+          <video
+            controls
+            src={image}           
+          />
+        )}
