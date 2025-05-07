@@ -60,3 +60,29 @@ const Gallery = () => {
       </div>
     );
   }
+  return (
+    <div className="gallery-container">
+      <h2 className="gallery-title">Image Gallery</h2>
+
+      {images.length === 0 ? (
+        <Empty description="No images have been shared yet" />
+      ) : (
+        <div className="gallery-grid">
+          {images.map((image, index) => (
+            <div key={image.id || index} className="gallery-item">
+              <div className="gallery-image-container">
+                <img
+                  src={image.mediaLink}
+                  alt=""
+                  className="gallery-image"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Gallery;
