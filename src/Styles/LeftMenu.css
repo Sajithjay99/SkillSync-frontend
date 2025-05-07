@@ -127,3 +127,16 @@
     scrollbar-color: #0073e6 #eef3f9;
   }
   
+.left-menu::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .left-menu::-webkit-scrollbar-track {
+    background: #eef3f9;
+  }
+  
+  .left-menu::-webkit-scrollbar-thumb {
+    background-color: #0073e6;
+    border-radius: 6px;
+  }
+  
