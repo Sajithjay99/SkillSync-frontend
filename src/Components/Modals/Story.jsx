@@ -153,3 +153,82 @@ const WorkoutStory = () => {
               </Button>
             ]
       }
+      bodyStyle={{ padding: "20px" }}
+      width={600}
+    >
+      {userId !== workoutStory.userId ? (
+        <div className="story-view-container">
+          <div className="story-image-wrapper">
+            <img 
+              src={workoutStory?.image} 
+              alt={workoutStory?.title} 
+              className="story-full-image" 
+            />
+          </div>
+          <div className="story-details">
+            <h3>{workoutStory?.title}</h3>
+            <p>{workoutStory?.description}</p>
+            {workoutStory.timestamp && (
+              <p className="story-timestamp">
+                {new Date(workoutStory.timestamp).toLocaleDateString()}
+              </p>
+            )}
+          </div>
+        </div>
+      ) : (
+        <Form form={form} layout="vertical">
+          <div className="story-image-editor">
+            {imageUploading ? (
+              <div className="image-uploading">
+                <Spin tip="Uploading..." />
+              </div>
+            ) : (
+              <img
+                className="edit-story-image"
+                src={uploadedImage || workoutStory?.image}
+                alt="Workout Story"
+              />
+            )}
+          </div>
+          
+          <Form.Item label="Title" name="title" rules={[{ required: true, message: 'Please enter a title' }]}>
+            <Input
+              value={updatedStory.title}
+              onChange={(e) =>
+                setUpdatedStory({ ...updatedStory, title: e.target.value })
+              }
+            />
+          </Form.Item>
+          
+          <Form.Item label="Image" name="image">
+            <Upload
+              beforeUpload={() => false} // Prevent default upload behavior
+              onChange={handleFileChange}
+              showUploadList={false}
+              disabled={imageUploading}
+            >
+              <Button icon={<UploadOutlined />} disabled={imageUploading}>
+                {imageUploading ? "Uploading..." : "Change Image"}
+              </Button>
+            </Upload>
+          </Form.Item>
+          
+          <Form.Item label="Description" name="description" rules={[{ required: true, message: 'Please enter a description' }]}>
+            <Input.TextArea
+              rows={4}
+              value={updatedStory.description}
+              onChange={(e) =>
+                setUpdatedStory({
+                  ...updatedStory,
+                  description: e.target.value,
+                })
+              }
+            />
+          </Form.Item>
+        </Form>
+      )}
+    </Modal>
+  );
+};
+
+export default WorkoutStory;
