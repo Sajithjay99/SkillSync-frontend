@@ -31,3 +31,36 @@ class PostService {
       throw new Error("Failed to get posts");
     }
   }
+  async getPostById(postId) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.get(`${BASE_URL}/posts/${postId}`, config);
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to get post");
+    }
+  }
+
+  async updatePost(postId, postData) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.put(
+        `${BASE_URL}/posts/${postId}`,
+        postData,
+        config
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to update post");
+    }
+  }
