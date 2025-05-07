@@ -81,7 +81,74 @@ const FriendProfileModal = () => {
     checkFriendshipStatus();
   }, []);
 
-  
+  return (
+    <Modal
+      onCancel={() => {
+        state.friendProfileModalOpened = false;
+      }}
+      width={1200}
+      footer={null}
+      open={snap.friendProfileModalOpened}
+    >
+      <Row style={{ justifyContent: "center", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <h1>{userData?.username}</h1>
+          <h2>{snap.selectedUserProfile?.biography}</h2>
+          <Avatar size={64} src={snap.selectedUserProfile?.image} />
+          {snap.selectedUserProfile?.id !== snap.currentUser?.uid && (
+            <div>
+              {isFriend ? (
+                <Button
+                  danger
+                  type="dashed"
+                  onClick={unfriendFriend}
+                  loading={addFriendLoading}
+                >
+                  Unfriend
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  loading={addFriendLoading}
+                  onClick={addFriend}
+                >
+                  Add Friend
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
+      </Row>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Posts" key="1">
+          <Row gutter={[16, 16]}>
+            {snap.posts
+              .filter((post) => post.userId === snap.selectedUserProfile.id)
+              .map((post) => (
+                <Col key={post.id} span={6}>
+                  <div style={{ padding: "8px", border: "1px solid #eaeaea" }}>
+                    <img
+                      src={post.mediaLink}
+                      style={{ height: "100%", maxWidth: 200, fill: "cover" }}
+                    />
+                  </div>
+                </Col>
+              ))}
+          </Row>
+        </TabPane>
+       
+       
+      </Tabs>
+    </Modal>
+  );
 };
 
 export default FriendProfileModal;
