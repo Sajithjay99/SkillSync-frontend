@@ -55,3 +55,39 @@ const AuthModal = ({ isOpen, onClose, onSuccess }) => {
             localStorage.setItem("userId", response.userId);
             localStorage.setItem("accessToken", response.accessToken);
           }
+          let imageUrl = "";
+        if (values.file) {
+          imageUrl = await uploader.uploadFile(
+            values.file[0].originFileObj,
+            "userImages"
+          );
+        }
+
+        const body = {
+          userId: localStorage.getItem("userId"),
+          image: imageUrl,
+          email: values.email,
+        };
+        await UserService.createProfile(body);
+        message.success("Welcome " + values.username);
+        if (onSuccess) onSuccess();
+        onClose();
+        form.resetFields();
+      }
+    } catch (err) {
+      message.error("Error: " + (err.message || "Unknown error occurred"));
+    } finally {
+      setIsLoading(false);
+      form.resetFields();
+      window.location.reload();
+    }
+  };
+
+  const handleOAuthLogin = (provider) => {
+    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+  };
+
+  const normFile = (e) => {
+    if (Array.isArray(e)) return e;
+    return e && e.fileList;
+  };
