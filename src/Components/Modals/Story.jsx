@@ -4,7 +4,7 @@ import { UploadOutlined, UserOutlined } from "@ant-design/icons";
 import { useSnapshot } from "valtio";
 import state from "../../Utils/Store";
 import UploadFileService from "../../Services/UploadFileService";
-import WorkoutStoryService from "../../Services/WorkoutStoryService";
+import WorkoutStoryService from "../../Services/workoutstoryservice";
 
 const uploadService = new UploadFileService();
 
