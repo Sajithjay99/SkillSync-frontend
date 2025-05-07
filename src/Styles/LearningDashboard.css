@@ -283,4 +283,34 @@
     padding: 24px;
   }
   
+  .learning-modal .submit-button {
+    background: linear-gradient(to right, #1890ff, #1890ff);
+    border: none;
+    width: 100%;
+    height: 40px;
+    font-weight: 500;
+    border-radius: 6px;
+    margin-top: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .learning-modal .submit-button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (max-width: 768px) {
+    .action-buttons,
+    .form-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .action-buttons button,
+    .form-actions button {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  }
   
