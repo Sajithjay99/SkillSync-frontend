@@ -297,3 +297,116 @@
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(10, 110, 180, 0.12);
   }
+
+  .skill-plan-active {
+  border-left: 5px solid var(--primary-color);
+}
+
+.skill-plan-completed {
+  background-color: rgba(37, 156, 111, 0.03);
+  border-left: 5px solid var(--secondary-color);
+}
+
+.skill-plan-completed .skill-plan-title {
+  text-decoration: line-through;
+  color: var(--gray-text);
+}
+
+.skill-plan-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.skill-plan-checkbox {
+  transform: scale(1.21);
+  accent-color: var(--secondary-color);
+}
+
+.skill-plan-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark-text);
+  flex: 1;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.skill-plan-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-plan-card:hover .skill-plan-action-buttons {
+  opacity: 1;
+}
+
+.skill-plan-edit-btn,
+.skill-plan-delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.skill-plan-edit-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(10, 110, 180, 0.08);
+  color: var(--primary-color);
+}
+
+.skill-plan-delete-btn:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 107, 107, 0.08);
+  color: var(--accent-color);
+}
+
+.skill-plan-body {
+  margin-bottom: 15px;
+}
+
+.skill-plan-metadata {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.skill-plan-tag {
+  background-color: rgba(10, 110, 180, 0.1);
+  border-radius: 20px;
+  padding: 5px 12px;
+  color: var(--primary-color);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.skill-plan-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gray-text);
+  font-size: 14px;
+}
+
+.skill-plan-resources {
+  margin-top: 15px;
+  padding: 12px 15px;
+  background: var(--light-bg);
+  border-radius: 8px;
+  /* border-left: 3px solid var(--primary-color); */
+}
+
+.skill-plan-resources-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
