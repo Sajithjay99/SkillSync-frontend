@@ -122,3 +122,40 @@ const CenterSection = () => {
             )}
           </div>
         )}
+
+{snap.activeIndex === 3 && (
+          <div className="notifications-container">
+            <LearningDashboard />
+            <MyLearning />
+          </div>
+        )}
+
+        {snap.activeIndex === 4 && (
+          <div className="friends-container">
+            <FriendsSection />
+          </div>
+        )}
+
+        {snap.activeIndex === 5 && (
+          <div className="notifications-container">
+            <Notifications />
+          </div>
+        )}
+
+        {snap.activeIndex === 6 && (
+          <div className="galleries-page">
+            <Gallery />
+          </div>
+        )}
+
+        {snap.activeIndex === 7 && (
+          <div className="videos-page">
+            <Videos />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default CenterSection;
