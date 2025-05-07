@@ -13,3 +13,18 @@ const Navbar = () => {
           <img alt="alt-tag" src="assets/logo.png" />
         </div>
       </div>
+      <div class="right">
+        <NotificationsDropdown />
+        <img
+          onClick={() => {
+            state.profileModalOpend = true;
+          }}
+          alt="alt-tag"
+          src={currentUser?.image}
+        />
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
