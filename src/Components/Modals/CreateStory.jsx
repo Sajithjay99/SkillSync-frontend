@@ -146,4 +146,18 @@ const CreateStory = () => {
                 onChange={handleFileChange}
                 showUploadList={false}
                 beforeUpload={() => false}
-              ></Upload>
+              >
+                <div className="upload-placeholder">
+                  <PictureOutlined style={{ fontSize: "32px", opacity: 0.5 }} />
+                  <p>Click to upload an image</p>
+                </div>
+              </Upload>
+            )}
+          </div>
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+};
+
+export default CreateStory;
