@@ -91,3 +91,62 @@ const AuthModal = ({ isOpen, onClose, onSuccess }) => {
     if (Array.isArray(e)) return e;
     return e && e.fileList;
   };
+  return (
+    <Modal title="Sign In or Sign Up" open={isOpen} footer={null} onCancel={onClose}>
+      <div className="oauth-buttons" style={{ marginBottom: "20px" }}>
+        <Space direction="vertical" style={{ width: "100%" }}>
+          <Button
+            icon={<GoogleOutlined />}
+            onClick={() => handleOAuthLogin("google")}
+            block
+            style={{ backgroundColor: "#4285F4", color: "white" }}
+          >
+            Continue with Google
+          </Button>
+          <Button
+            icon={<GithubOutlined />}
+            onClick={() => handleOAuthLogin("github")}
+            block
+          >
+            Continue with GitHub
+          </Button>
+        </Space>
+      </div>
+
+      <Divider>OR</Divider>
+
+      <Form
+        name="authForm"
+        form={form}
+        initialValues={{ remember: true }}
+        onFinish={handleFormSubmit}
+        autoComplete="off"
+      >
+        <Form.Item
+          name="username"
+          label="Username"
+          rules={[{ required: true, message: "Please input your Username!" }]}
+        >
+          <Input placeholder="Username" />
+        </Form.Item>
+
+        <Form.Item
+          name="password"
+          label="Password"
+          rules={[{ required: true, message: "Please input your Password!" }]}
+        >
+          <Input.Password placeholder="Password" />
+        </Form.Item>
+
+        {!signinFocused && (
+          <>
+            <Form.Item shouldUpdate={(prev, curr) => prev.password !== curr.password}>
+              {({ getFieldValue }) => {
+                const password = getFieldValue("password") || "";
+                const rules = [
+                  { label: "At least 8 characters", valid: password.length >= 8 },
+                  { label: "At least 1 uppercase letter", valid: /[A-Z]/.test(password) },
+                  { label: "At least 1 lowercase letter", valid: /[a-z]/.test(password) },
+                  { label: "At least 1 number", valid: /\d/.test(password) },
+                  { label: "At least 1 special character", valid: /[!@#$%^&*]/.test(password) },
+                ];
