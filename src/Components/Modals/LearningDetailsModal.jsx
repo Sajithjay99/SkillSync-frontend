@@ -199,3 +199,62 @@ const LearningDetailsModal = ({ onRefresh }) => {
       </div>
     );
   };
+
+  const renderEditForm = () => {
+    return (
+      <Form form={form} layout="vertical" initialValues={learning}>
+        <Form.Item name="topic" label="Topic" rules={[{ required: true, message: "Please enter topic" }]}>
+          <Input placeholder="Enter topic" />
+        </Form.Item>
+        <Form.Item name="description" label="Description" rules={[{ required: true, message: "Please enter description" }]}>
+          <TextArea rows={4} placeholder="Enter description" />
+        </Form.Item>
+        <Form.Item name="status" label="Status" rules={[{ required: true, message: "Please select status" }]}>
+          <Select placeholder="Select status">
+            <Option value="In Progress">In Progress</Option>
+            <Option value="Completed">Completed</Option>
+            <Option value="On Hold">On Hold</Option>
+            
+          </Select>
+        </Form.Item>
+        <Form.Item name="resourceLink" label="Resource Link">
+          <Input placeholder="Enter resource link (optional)" />
+        </Form.Item>
+        {renderTemplateFields()}
+        <Form.Item name="reflection" label="Reflection">
+          <TextArea rows={3} placeholder="Enter reflection (optional)" />
+        </Form.Item>
+        <div className="form-actions">
+          <Button type="primary" onClick={handleUpdate} loading={loading} icon={<SaveOutlined />}>
+            Save
+          </Button>
+          <Button onClick={handleCancel} icon={<CloseOutlined />}>
+            Cancel
+          </Button>
+        </div>
+      </Form>
+    );
+  };
+
+  const closeModal = () => {
+    state.learningDetailsModalOpened = false;
+    state.selectedLearning = null;
+    setIsEditing(false);
+    form.resetFields();
+  };
+
+  return (
+    <Modal
+      title={getTemplateTitle()}
+      open={snap.learningDetailsModalOpened}
+      onCancel={closeModal}
+      footer={null}
+      width={700}
+      destroyOnClose
+    >
+      {isEditing ? renderEditForm() : renderDetailsView()}
+    </Modal>
+  );
+};
+
+export default LearningDetailsModal;
