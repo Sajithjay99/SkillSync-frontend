@@ -155,3 +155,44 @@ class AuthService {
       throw new Error("Session expired. Please login again.");
     }
   }
+
+  logout() {
+    console.log('[AuthService] Logging out user');
+    localStorage.removeItem("userId");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    
+    console.log('[AuthService] Local storage after logout:', {
+      userId: localStorage.getItem('userId'),
+      accessToken: localStorage.getItem('accessToken'),
+      refreshToken: localStorage.getItem('refreshToken')
+    });
+    
+    // Trigger a storage event manually
+    console.log('[AuthService] Dispatching storage event');
+    window.dispatchEvent(new Event('storage'));
+    
+    // Call the logout endpoint
+    return axios.post(`${BASE_URL}/logout`, {}, {
+      withCredentials: true
+    }).catch(error => {
+      console.error('[AuthService] Error during logout:', error);
+    });
+  }
+
+  // Check if user is authenticated
+  isAuthenticated() {
+    const userId = localStorage.getItem('userId');
+    const accessToken = localStorage.getItem('accessToken');
+    
+    console.log('[AuthService] Checking isAuthenticated:', {
+      userId: userId,
+      accessToken: accessToken ? 'EXISTS (not shown for security)' : 'NOT FOUND',
+      result: !!(userId && accessToken)
+    });
+    
+    return !!(userId && accessToken);
+  }
+}
+
+export default new AuthService();
