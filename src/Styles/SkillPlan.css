@@ -110,3 +110,190 @@
     color: var(--primary-color);
     margin-right: 15px;
   }
+
+  
+.friends-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--dark-text);
+  }
+  
+  .friends-count {
+    margin-left: 15px;
+    color: var(--gray-text);
+    font-size: 16px;
+    background: rgba(10, 110, 180, 0.1);
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+  }
+  
+  .friend-card {
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 0;
+  }
+  
+  .friend-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(10, 110, 180, 0.15);
+  }
+  
+  .friend-favorite::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--favorite-color), var(--accent-color));
+  }
+  
+  .friend-card:not(.friend-favorite)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary-color), var(--highlight-color));
+  }
+  
+  .favorite-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    color: var(--favorite-color);
+    font-size: 22px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+  
+  .friend-card-header {
+    text-align: center;
+    padding: 30px 0 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--highlight-color) 100%);
+    position: relative;
+  }
+  
+  .friend-avatar {
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(10, 110, 180, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .friend-card:hover .friend-avatar {
+    transform: scale(1.05);
+  }
+  
+  .friend-card-body {
+    padding: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .friend-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align: center;
+    color: var(--primary-color);
+  }
+  
+  .friend-status {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--gray-text);
+  }
+  
+  .friend-status-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(10, 110, 180, 0.05);
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+  
+  .friend-status-item.active {
+    background: rgba(44, 199, 139, 0.1);
+    color: var(--secondary-color);
+  }
+  
+  .friend-status-item.workout {
+    background: rgba(255, 107, 107, 0.1);
+    color: var(--accent-color);
+  }
+  
+  .friend-bio {
+    background-color: var(--light-bg);
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 14px;
+    color: var(--dark-text);
+    line-height: 1.6;
+    flex: 1;
+    margin-top: auto;
+    box-shadow: inset 0 2px 5px rgba(10, 110, 180, 0.08);
+    border-left: 3px solid var(--primary-color);
+  }
+  
+  .friend-card-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 20px;
+    border-top: 1px solid rgba(10, 110, 180, 0.1);
+    background-color: #fff;
+  }
+  
+  .friend-action-btn {
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: var(--gray-text);
+  }
+  
+  .friend-action-btn:hover {
+    background-color: rgba(10, 110, 180, 0.08);
+    transform: translateY(-3px);
+    color: var(--primary-color);
+  }
+  
+  /* Skill Plan Card Styles */
+  .skill-plan-card {
+    background: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: none;
+  }
+  
+  .skill-plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(10, 110, 180, 0.12);
+  }
