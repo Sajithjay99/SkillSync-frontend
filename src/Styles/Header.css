@@ -183,3 +183,41 @@
     }
   }
   
+@media screen and (max-width: 768px) {
+    .headercontent {
+      text-align: center;
+      margin: 0 auto;
+    }
+  
+    .headercontent h1 {
+      font-size: 2.25rem;
+    }
+  
+    .headerbtn {
+      justify-content: center;
+    }
+  
+    .header::before {
+      opacity: 0.04;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .headercontent h1 {
+      font-size: 1.75rem;
+    }
+  
+    .headercontent h2 {
+      font-size: 1.1rem;
+    }
+  
+    .headercontent p {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
