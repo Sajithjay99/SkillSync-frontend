@@ -153,6 +153,7 @@ const UpdateSkillPlanModal = () => {
       </Form>
     </Modal>
   );
+  
 };
 
 export default UpdateSkillPlanModal;
