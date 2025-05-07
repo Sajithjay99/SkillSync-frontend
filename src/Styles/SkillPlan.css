@@ -1,0 +1,112 @@
+/* Main Layout Styles -  Theme */
+:root {
+    --primary-color: #0a6eb4; /*  blue */
+    --secondary-color: #2cc78b; /* Health green */
+    --accent-color: #ff6b6b; /* Heart rate red */
+    --highlight-color: #4fb3ff; /* Light blue highlight */
+    --favorite-color: #ff9d4a; /*  orange */
+    --light-bg: #f5f9fc; /* Light blue background */
+    --dark-text: #2e3e50; /* Dark blue text */
+    --light-text: #ffffff;
+    --gray-text: #7a8c9e;
+    --border-radius: 12px;
+    --shadow: 0 4px 12px rgba(10, 110, 180, 0.12);
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Center Section Styles */
+  .center {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    margin-left: 250px;
+    padding: 30px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  
+  .profile-header {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+    border-bottom: none;
+  }
+  
+  .profile-avatar {
+    cursor: pointer;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(10, 110, 180, 0.15);
+    transition: all 0.3s ease;
+  }
+  
+  .profile-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(10, 110, 180, 0.25);
+  }
+  
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Feed Container */
+  .feed-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Skill Plans Section */
+  .skill-container {
+    padding: 20px 0;
+  }
+  
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .no-plans-message {
+    margin-top: 40px;
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+  }
+  
+  /* Friends Section */
+  .friends-section {
+    padding: 20px 0;
+  }
+  
+  .friends-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(10, 110, 180, 0.15);
+  }
+  
+  .friends-icon {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-right: 15px;
+  }
