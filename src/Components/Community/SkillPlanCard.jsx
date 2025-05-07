@@ -68,3 +68,76 @@ const SkillPlanCard = ({ plan }) => {
       setUpdateLoading(false);
     }
   };
+
+  return (
+    <Card
+      className={`skill-plan-card ${isFinished ? 'skill-plan-completed' : 'skill-plan-active'}`}
+      bordered={false}
+    >
+      <div className="skill-plan-header">
+        <Checkbox
+          checked={isFinished}
+          onChange={handleCheckboxChange}
+          disabled={updateLoading}
+          className="skill-plan-checkbox"
+        />
+        <h3 className="skill-plan-title">{plan.skillDetails}</h3>
+        
+        <div className="skill-plan-action-buttons">
+          <Tooltip title="Edit task">
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => {
+                state.selectedSkillPlanToUpdate = plan;
+                state.updateSkillPlanOpened = true;
+              }}
+              className="skill-plan-edit-btn"
+              type="text"
+            />
+          </Tooltip>
+          
+          <Tooltip title="Delete task">
+            <Button
+              icon={<DeleteOutlined />}
+              onClick={deletePlan}
+              loading={deleteLoading}
+              className="skill-plan-delete-btn"
+              type="text"
+              danger
+            />
+          </Tooltip>
+        </div>
+      </div>
+      
+      <div className="skill-plan-body">
+        <div className="skill-plan-metadata">
+          <div className="skill-plan-tag">Level: {plan.skillLevel}</div>
+          <div className="skill-plan-date">
+            <ClockCircleOutlined /> {dayjs(plan.date).format("MMM D, YYYY")}
+          </div>
+        </div>
+        
+        {plan.resources && (
+          <div className="skill-plan-resources">
+            <div className="skill-plan-resources-label">Resources:</div>
+            <div className="skill-plan-resources-value">{plan.resources}</div>
+          </div>
+        )}
+      </div>
+      
+      <div className="skill-plan-status">
+        {isFinished ? (
+          <div className="skill-plan-completed-tag">
+            <CheckCircleOutlined /> Completed
+          </div>
+        ) : (
+          <div className="skill-plan-pending-tag">
+            <ClockCircleOutlined /> In Progress
+          </div>
+        )}
+      </div>
+    </Card>
+  );
+};
+
+export default SkillPlanCard;
