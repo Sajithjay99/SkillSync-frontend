@@ -1,0 +1,227 @@
+.header {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(135deg, #f5faff 0%, #eaf5ff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .headercontainer {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 2rem 0;
+    margin-left: 40px;
+  }
+  
+  .headercontent {
+    max-width: 650px;
+    z-index: 10;
+  }
+  
+  .headercontent h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #1a365d;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #1a365d, #0284c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .headercontent h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0ea5e9;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    animation: fadeIn 1s ease-out 0.2s both;
+  }
+  
+  .headercontent p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 2.5rem;
+    max-width: 540px;
+    animation: fadeIn 1.2s ease-out 0.4s both;
+  }
+  
+  .headerbtn {
+    display: flex;
+    gap: 1rem;
+    animation: fadeIn 1.4s ease-out 0.6s both;
+  }
+  
+  .btn {
+    padding: 0.875rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .btnprimary {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.25);
+  }
+  
+  .btnprimary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 20px -3px rgba(2, 132, 199, 0.35);
+  }
+  
+  .btn__primary:active {
+    transform: translateY(0);
+  }
+  
+  .pulse {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.07) 0%, rgba(14, 165, 233, 0) 70%);
+    animation: pulse 15s infinite;
+    z-index: 1;
+  }
+  
+  .pulse:first-child {
+    top: -150px;
+    right: -100px;
+    animation-delay: 0s;
+  }
+  
+  .pulse:nth-child(2) {
+    bottom: -100px;
+    left: -150px;
+    width: 500px;
+    height: 500px;
+    animation-delay: -5s;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Decorative elements */
+  .header::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 500px;
+    height: 500px;
+    background: url('https://th.bing.com/th/id/OIP.hLsM4ell_wXM2BgQ0bBdLQHaEv?rs=1&pid=ImgDetMain') no-repeat center;
+    background-size: contain;
+    opacity: 0.11;
+    z-index: 1;
+    animation: float 10s ease-in-out infinite;
+  }
+  
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, rgba(14, 165, 233, 0) 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    z-index: 1;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 992px) {
+    .headercontent h1 {
+      font-size: 2.75rem;
+    }
+  
+    .headercontent h2 {
+      font-size: 1.25rem;
+    }
+  }
+  
+feature/oshan/skillplan/sprint02
+@media screen and (max-width: 768px) {
+
+  @media screen and (max-width: 768px) {
+Dev
+    .headercontent {
+      text-align: center;
+      margin: 0 auto;
+    }
+  
+    .headercontent h1 {
+      font-size: 2.25rem;
+    }
+  
+    .headerbtn {
+      justify-content: center;
+    }
+  
+    .header::before {
+      opacity: 0.04;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .headercontent h1 {
+      font-size: 1.75rem;
+    }
+  
+    .headercontent h2 {
+      font-size: 1.1rem;
+    }
+  
+    .headercontent p {
+      font-size: 1rem;
+    }
+  
+    .btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  
