@@ -29,4 +29,4 @@ const CreateSkillPlanBox = () => {
   );
 };
 
-export default CreateSkillPlanBox;g
+export default CreateSkillPlanBox; 
