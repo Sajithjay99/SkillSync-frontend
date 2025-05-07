@@ -64,3 +64,50 @@ class PostService {
       throw new Error("Failed to update post");
     }
   }
+  async deletePost(postId) {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      await axios.delete(`${BASE_URL}/posts/${postId}`, config);
+    } catch (error) {
+      throw new Error("Failed to delete post");
+    }
+  }
+
+  // New methods for Galleries and Videos
+  async getImageGallery() {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.get(`${BASE_URL}/posts/media/images`, config);
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to get image gallery");
+    }
+  }
+
+  async getVideos() {
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const config = {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await axios.get(`${BASE_URL}/posts/media/videos`, config);
+      return response.data;
+    } catch (error) {
+      throw new Error("Failed to get videos");
+    }
+  }
+}
+
+export default new PostService();
