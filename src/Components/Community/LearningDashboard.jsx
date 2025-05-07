@@ -167,4 +167,110 @@ const LearningDashboard = () => {
     );
   }
 
-  
+  return (
+    <div className="learning-dashboard">
+      <div className="dashboard-header">
+        <h2>Learning Dashboard</h2>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={() => {
+            state.createLearningModalOpened = true;
+          }}
+        >
+          Add Learning
+        </Button>
+      </div>
+
+      <div className="stats-section">
+        <Row gutter={16}>
+          <Col span={4}>
+            <Card>
+              <Statistic title="Total Entries" value={stats.total} prefix={<BookOutlined />} />
+            </Card>
+          </Col>
+          <Col span={4}>
+            <Card>
+              <Statistic title="Completed" value={stats.completed} prefix={<CheckCircleOutlined />} valueStyle={{ color: "#3f8600" }} />
+            </Card>
+          </Col>
+          <Col span={4}>
+            <Card>
+              <Statistic title="In Progress" value={stats.inProgress} prefix={<ClockCircleOutlined />} valueStyle={{ color: "#1890ff" }} />
+            </Card>
+          </Col>
+          <Col span={4}>
+            <Card>
+              <Statistic title="On Hold" value={stats.onHold} prefix={<PauseCircleOutlined />} valueStyle={{ color: "#faad14" }} />
+            </Card>
+          </Col>
+          <Col span={4}>
+            <Card>
+              <Statistic title="This Week" value={stats.recent} prefix={<CalendarOutlined />} valueStyle={{ color: "#722ed1" }} />
+            </Card>
+          </Col>
+        </Row>
+      </div>
+
+      <div className="learning-content">
+        <Tabs defaultActiveKey="all" className="learning-tabs">
+          <TabPane tab="All Learning" key="all">
+            <div className="learning-grid">
+              {snap.learningEntries?.length > 0 ? snap.learningEntries.map(renderLearningCard) : <Empty description="No learning entries found" />}
+            </div>
+          </TabPane>
+          <TabPane tab="Recent" key="recent">
+            <div className="learning-grid">
+              {snap.learningEntries?.filter(entry => new Date(entry.timestamp) >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length > 0 ? (
+                snap.learningEntries.filter(entry => new Date(entry.timestamp) >= new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).map(renderLearningCard)
+              ) : (
+                <Empty description="No recent learning entries" />
+              )}
+            </div>
+          </TabPane>
+          <TabPane tab="In Progress" key="inProgress">
+            <div className="learning-grid">
+              {snap.learningEntries?.filter(entry => entry.status === "In Progress").length > 0 ? (
+                snap.learningEntries.filter(entry => entry.status === "In Progress").map(renderLearningCard)
+              ) : (
+                <Empty description="No in-progress entries found" />
+              )}
+            </div>
+          </TabPane>
+          <TabPane tab="On Hold" key="onHold">
+            <div className="learning-grid">
+              {snap.learningEntries?.filter(entry => entry.status === "On Hold").length > 0 ? (
+                snap.learningEntries.filter(entry => entry.status === "On Hold").map(renderLearningCard)
+              ) : (
+                <Empty description="No on-hold entries found" />
+              )}
+            </div>
+          </TabPane>
+          <TabPane tab="Certifications" key="certifications">
+            <div className="learning-grid">
+              {snap.learningEntries?.filter(entry => entry.template === "certification").length > 0 ? (
+                snap.learningEntries.filter(entry => entry.template === "certification").map(renderLearningCard)
+              ) : (
+                <Empty description="No certification entries found" />
+              )}
+            </div>
+          </TabPane>
+          <TabPane tab="Challenges" key="challenges">
+            <div className="learning-grid">
+              {snap.learningEntries?.filter(entry => entry.template === "challenge").length > 0 ? (
+                snap.learningEntries.filter(entry => entry.template === "challenge").map(renderLearningCard)
+              ) : (
+                <Empty description="No challenge entries found" />
+              )}
+            </div>
+          </TabPane>
+        </Tabs>
+      </div>
+
+      <CreateLearningModal onRefresh={loadUserLearning} />
+      <LearningDetailsModal onRefresh={loadUserLearning} />
+    </div>
+  );
+};
+
+export default LearningDashboard;
