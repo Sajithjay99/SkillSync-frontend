@@ -150,3 +150,79 @@ const AuthModal = ({ isOpen, onClose, onSuccess }) => {
                   { label: "At least 1 number", valid: /\d/.test(password) },
                   { label: "At least 1 special character", valid: /[!@#$%^&*]/.test(password) },
                 ];
+
+                
+                return (
+                    <ul style={{ listStyle: "none", paddingLeft: 0, marginBottom: 16 }}>
+                      {rules.map((rule, idx) => (
+                        <li key={idx} style={{ color: rule.valid ? "green" : "gray" }}>
+                          {rule.label}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                }}
+              </Form.Item>
+  
+              <Form.Item
+                name="confirm"
+                dependencies={["password"]}
+                hasFeedback
+                label="Confirm Password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please confirm your password!",
+                  },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("The two passwords that you entered do not match!")
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password placeholder="Confirm Password" />
+              </Form.Item>
+  
+              <Form.Item
+                name="file"
+                valuePropName="fileList"
+                getValueFromEvent={normFile}
+                extra="Optional: Upload an image for your profile"
+              >
+                <Upload.Dragger beforeUpload={() => false} multiple={false}>
+                  <p className="ant-upload-drag-icon">
+                    <InboxOutlined />
+                  </p>
+                  <p className="ant-upload-text">
+                    Click or drag file to this area to upload
+                  </p>
+                </Upload.Dragger>
+              </Form.Item>
+            </>
+          )}
+  
+          <Form.Item>
+            <Button loading={isLoading} type="primary" htmlType="submit" block>
+              {signinFocused ? "Sign In" : "Sign Up"}
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button type="link" onClick={toggleFocus} block>
+              {signinFocused
+                ? "Need an account? Sign up"
+                : "Already have an account? Sign in"}
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
+    );
+  };
+  
+  export default AuthModal;
+  
